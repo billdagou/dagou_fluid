@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+# Fluid Templating Engine - Dagou Edition
+EXT:dagou_fluid provides some useful ViewHelpers on website development.
+
+#### Html.ScriptViewHelper
+This ViewHelper helps you to load javascript library, file, or inline code in your Fluid template.
+
+	<df:html.script src="..." />
+	<df:html.script>...</df:html.script>
+
+Allowed attributes:
+
+- `name` (string)
+Script name, in case you want to overwrite the script source in some other place. **Only works for library and inline code.**
+
+- `src` (string)
+Script source. Allowed prefix: `http://`, `https://`, `//`, `EXT:`.
+
+- `library` (boolean)
+Whether the script is library or not.
+
+- `footer` (boolean)
+Whether add the script at the end of the page or not.
+=======
 # Fluid Templating Engine - Dagou edition
 EXT:dagou_fluid provides some useful ViewHelpers on website development.
 
@@ -17,6 +41,7 @@ Script source. Allowed prefix: `http://`, `https://`, `//`, `EXT:`.
 
 - `library` (boolean)
 Whether the script is library or not.
+>>>>>>> branch 'master' of https://github.com/billdagou/dagou_fluid.git
 
 #### Html.StyleViewHelper
 This ViewHelper helps you to load stylesheet library, file, or inline code in your Fluid template.
