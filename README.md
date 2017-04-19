@@ -19,7 +19,7 @@ Script source. Allowed prefix: `http://`, `https://`, `//`, `EXT:`.
 Whether the script is library or not.
 
 - `footer` (boolean)
-Whether add the script at the end of the page or not.
+Whether add the script at the end of the page or not. Default: `TRUE`.
 
 #### Html.StyleViewHelper
 This ViewHelper helps you to load stylesheet library, file, or inline code in your Fluid template.
