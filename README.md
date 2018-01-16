@@ -62,3 +62,14 @@ Allowed attributes:
 
 - `tel` (string)
 Phone number.
+
+#### Link.QqViewHelper
+This ViewHelper helps you to create a URL for QQ message.
+
+	<df:link.qq qq="..." />
+	<df:link.qq>...</df:link.qq>
+
+Allowed attributes:
+
+- `qq` (string)
+QQ number.
