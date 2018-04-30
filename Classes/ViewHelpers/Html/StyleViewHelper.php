@@ -1,23 +1,28 @@
 <?php
 namespace Dagou\DagouFluid\ViewHelpers\Html;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Dagou\DagouFluid\Traits\Asset;
+use Dagou\DagouFluid\Traits\PageRenderer;
 
-class StyleViewHelper extends AbstractAssetViewHelper
-{
-    public function render()
-    {
-        /** @var \TYPO3\CMS\Core\Page\PageRenderer $pageRenderer */
-        $pageRenderer = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+class StyleViewHelper extends AbstractAssetViewHelper {
+    use Asset, PageRenderer;
 
+    public function render() {
         if ($this->arguments['src']) {
             if ($this->arguments['library']) {
-                $pageRenderer->addCssLibrary($this->getAssetFilePath());
+                $this->getPageRenderer()->addCssLibrary(
+                    $this->getAssetPath($this->arguments['src'])
+                );
             } else {
-                $pageRenderer->addCssFile($this->getAssetFilePath());
+                $this->getPageRenderer()->addCssFile(
+                    $this->getAssetPath($this->arguments['src'])
+                );
             }
         } else {
-            $pageRenderer->addCssInlineBlock($this->getName(), $this->renderChildren());
+            $this->getPageRenderer()->addCssInlineBlock(
+                $this->getName($this->arguments['name']),
+                $this->renderChildren()
+            );
         }
     }
 }

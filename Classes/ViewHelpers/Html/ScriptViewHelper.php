@@ -1,41 +1,54 @@
 <?php
 namespace Dagou\DagouFluid\ViewHelpers\Html;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Dagou\DagouFluid\Traits\Asset;
+use Dagou\DagouFluid\Traits\PageRenderer;
 
-class ScriptViewHelper extends AbstractAssetViewHelper
-{
-    public function initializeArguments()
-    {
+class ScriptViewHelper extends AbstractAssetViewHelper {
+    use Asset, PageRenderer;
+
+    public function initializeArguments() {
         parent::initializeArguments();
 
         $this->registerArgument('footer', 'boolean', 'Add to footer or not.', FALSE, TRUE);
     }
 
-    public function render()
-    {
-        /** @var \TYPO3\CMS\Core\Page\PageRenderer $pageRenderer */
-        $pageRenderer = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
-
+    public function render() {
         if ($this->arguments['footer']) {
             if ($this->arguments['src']) {
                 if ($this->arguments['library']) {
-                    $pageRenderer->addJsFooterLibrary($this->getName(), $this->getAssetFilePath());
+                    $this->getPageRenderer()->addJsFooterLibrary(
+                        $this->getName($this->arguments['name']),
+                        $this->getAssetPath($this->arguments['src'])
+                    );
                 } else {
-                    $pageRenderer->addJsFooterFile($this->getAssetFilePath());
+                    $this->getPageRenderer()->addJsFooterFile(
+                        $this->getAssetPath($this->arguments['src'])
+                    );
                 }
             } else {
-                $pageRenderer->addJsFooterInlineCode($this->getName(), $this->renderChildren());
+                $this->getPageRenderer()->addJsFooterInlineCode(
+                    $this->getName($this->arguments['name']),
+                    $this->renderChildren()
+                );
             }
         } else {
             if ($this->arguments['src']) {
                 if ($this->arguments['library']) {
-                    $pageRenderer->addJsLibrary($this->getName(), $this->getAssetFilePath());
+                    $this->getPageRenderer()->addJsLibrary(
+                        $this->getName($this->arguments['name']),
+                        $this->getAssetPath($this->arguments['src'])
+                    );
                 } else {
-                    $pageRenderer->addJsFile($this->getAssetFilePath());
+                    $this->getPageRenderer()->addJsFile(
+                        $this->getAssetPath($this->arguments['src'])
+                    );
                 }
             } else {
-                $pageRenderer->addJsInlineCode($this->getName(), $this->renderChildren());
+                $this->getPageRenderer()->addJsInlineCode(
+                    $this->getName($this->arguments['name']),
+                    $this->renderChildren()
+                );
             }
         }
     }
