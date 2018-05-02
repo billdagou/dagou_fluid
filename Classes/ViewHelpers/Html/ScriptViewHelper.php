@@ -18,7 +18,7 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
             if ($this->arguments['src']) {
                 if ($this->arguments['library']) {
                     $this->getPageRenderer()->addJsFooterLibrary(
-                        $this->getName($this->arguments['name']),
+                        $this->getAssetName($this->arguments['name']),
                         $this->getAssetPath($this->arguments['src'])
                     );
                 } else {
@@ -28,7 +28,7 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
                 }
             } else {
                 $this->getPageRenderer()->addJsFooterInlineCode(
-                    $this->getName($this->arguments['name']),
+                    $this->getAssetName($this->arguments['name']),
                     $this->renderChildren()
                 );
             }
@@ -36,7 +36,7 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
             if ($this->arguments['src']) {
                 if ($this->arguments['library']) {
                     $this->getPageRenderer()->addJsLibrary(
-                        $this->getName($this->arguments['name']),
+                        $this->getAssetName($this->arguments['name']),
                         $this->getAssetPath($this->arguments['src'])
                     );
                 } else {
@@ -46,7 +46,7 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
                 }
             } else {
                 $this->getPageRenderer()->addJsInlineCode(
-                    $this->getName($this->arguments['name']),
+                    $this->getAssetName($this->arguments['name']),
                     $this->renderChildren()
                 );
             }

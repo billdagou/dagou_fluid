@@ -20,7 +20,7 @@ class StyleViewHelper extends AbstractAssetViewHelper {
             }
         } else {
             $this->getPageRenderer()->addCssInlineBlock(
-                $this->getName($this->arguments['name']),
+                $this->getAssetName($this->arguments['name']),
                 $this->renderChildren()
             );
         }
