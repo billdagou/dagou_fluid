@@ -22,7 +22,9 @@ class TypoScriptViewHelper extends AbstractViewHelper {
             $pathSegments = GeneralUtility::trimExplode('.', $this->arguments['objectPath']);
 
             if (count($pathSegments)) {
-                $typoScript = GeneralUtility::makeInstance(ConfigurationManager::class)->getConfiguration(
+                $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
+
+                $typoScript = $configurationManager->getConfiguration(
                     ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
                 );
 
