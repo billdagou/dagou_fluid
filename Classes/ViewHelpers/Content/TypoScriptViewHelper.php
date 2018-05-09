@@ -8,6 +8,18 @@ use TYPO3\CMS\Frontend\Configuration\TypoScript\ConditionMatching\ConditionMatch
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class TypoScriptViewHelper extends AbstractViewHelper {
+    /**
+     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     */
+    protected $configurationManager;
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
+     */
+    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager) {
+        $this->configurationManager = $configurationManager;
+    }
+
     public function initializeArguments() {
         $this->registerArgument('objectPath', 'string', 'TypoScript object path.');
         $this->registerArgument('cache', 'boolean', 'Enable cache or not.', FALSE, TRUE);
@@ -21,9 +33,7 @@ class TypoScriptViewHelper extends AbstractViewHelper {
             $pathSegments = GeneralUtility::trimExplode('.', $this->arguments['objectPath']);
 
             if (count($pathSegments)) {
-                $configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
-
-                $typoScript = $configurationManager->getConfiguration(
+                $typoScript = $this->configurationManager->getConfiguration(
                     ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
                 );
 
