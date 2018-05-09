@@ -59,8 +59,6 @@ class TypoScriptViewHelper extends AbstractViewHelper {
             $cObject = $this->arguments['cache'] ? 'COA' : 'COA_INT';
             $typoScript = $typoScriptParser->setup;
         }
-        print_r($cObject);
-        print_r($typoScript);
 
         return $GLOBALS['TSFE']->cObj->cObjGetSingle($cObject, $typoScript);
     }
