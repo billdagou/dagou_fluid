@@ -9,6 +9,10 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class TypoScriptViewHelper extends AbstractViewHelper {
     /**
+     * @var bool
+     */
+    protected $escapeOutput = FALSE;
+    /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      */
     protected $configurationManager;
@@ -55,8 +59,9 @@ class TypoScriptViewHelper extends AbstractViewHelper {
             $cObject = $this->arguments['cache'] ? 'COA' : 'COA_INT';
             $typoScript = $typoScriptParser->setup;
         }
-print_r($cObject);
-print_r($typoScript);
+        print_r($cObject);
+        print_r($typoScript);
+
         return $GLOBALS['TSFE']->cObj->cObjGetSingle($cObject, $typoScript);
     }
 }
