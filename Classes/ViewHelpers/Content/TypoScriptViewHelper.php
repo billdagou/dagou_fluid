@@ -33,6 +33,7 @@ class TypoScriptViewHelper extends AbstractViewHelper {
             $pathSegments = GeneralUtility::trimExplode('.', $this->arguments['objectPath']);
 
             if (count($pathSegments)) {
+                $cObject = '';
                 $typoScript = $this->configurationManager->getConfiguration(
                     ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
                 );
@@ -42,6 +43,7 @@ class TypoScriptViewHelper extends AbstractViewHelper {
                         return;
                     }
 
+                    $cObject = $typoScript[$segment];
                     $typoScript = $typoScript[$segment.'.'];
                 }
             }
@@ -50,12 +52,11 @@ class TypoScriptViewHelper extends AbstractViewHelper {
 
             $typoScriptParser->parse($this->renderChildren(), GeneralUtility::makeInstance(ConditionMatcher::class));
 
+            $cObject = $this->arguments['cache'] ? 'COA' : 'COA_INT';
             $typoScript = $typoScriptParser->setup;
         }
-
-        return $GLOBALS['TSFE']->cObj->cObjGetSingle(
-            $this->arguments['cache'] ? 'COA' : 'COA_INT',
-            $typoScriptParser->setup
-        );
+print_r($cObject);
+print_r($typoScript);
+        return $GLOBALS['TSFE']->cObj->cObjGetSingle($cObject, $typoScript);
     }
 }
