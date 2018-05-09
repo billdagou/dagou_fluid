@@ -3,7 +3,6 @@ namespace Dagou\DagouFluid\ViewHelpers\Content;
 
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Frontend\Configuration\TypoScript\ConditionMatching\ConditionMatcher;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -22,7 +21,7 @@ class TypoScriptViewHelper extends AbstractViewHelper {
             $pathSegments = GeneralUtility::trimExplode('.', $this->arguments['objectPath']);
 
             if (count($pathSegments)) {
-                $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
+                $configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
 
                 $typoScript = $configurationManager->getConfiguration(
                     ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
