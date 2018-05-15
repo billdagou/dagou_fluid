@@ -1,6 +1,25 @@
 # Fluid Templating Engine - Dagou Edition
 EXT:dagou_fluid provides some useful ViewHelpers on website development.
 
+#### Content.TypoScriptViewHelper
+This ViewHelper helps you to render TypoScript.
+
+    <df:content.typoScript objectPath="" />
+    <df:content.typoScript>...</df:content.typoScript>
+
+- `objectPath` (string) TypoScript object path.
+- `cache` (boolean) Enable cache or not. Default `true`.
+
+#### Content.FlashMessageViewHelper
+This ViewHelper helps you to iterate the Flash Messages.
+
+    <df:content.flashMessage as="...">...</df:content.flashMessage>
+
+- `as` (string) Iteration variable name. **Required**.
+- `identifier` (string) Flash-message queue identifier.
+- `severity` (string) Optional severity, must be one of `\TYPO3\CMS\Core\Messaging\AbstractMessage` constants.
+- `flush` (boolean) Flush or not. Default `true`.
+
 #### Html.ScriptViewHelper
 This ViewHelper helps you to load .JS library, file, or inline code in your Fluid template.
 
