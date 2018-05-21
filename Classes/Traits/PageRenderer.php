@@ -7,7 +7,7 @@ trait PageRenderer {
     /**
      * @var \TYPO3\CMS\Core\Page\PageRenderer
      */
-    protected static $pageRenderer;
+    protected static $pageRenderer = NULL;
 
     /**
      * @return \TYPO3\CMS\Core\Page\PageRenderer
