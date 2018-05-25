@@ -9,11 +9,11 @@ class FlashMessageViewHelper extends AbstractViewHelper {
      * @var array
      */
     protected $severities = [
-        'error' => AbstractMessage::ERROR,
+        'notice' => AbstractMessage::NOTICE,
         'info' => AbstractMessage::INFO,
         'ok' => AbstractMessage::OK,
-        'notice' => AbstractMessage::NOTICE,
         'warning' => AbstractMessage::WARNING,
+        'error' => AbstractMessage::ERROR,
     ];
 
     public function initializeArguments() {
