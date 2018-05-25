@@ -6,6 +6,10 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class FlashMessageViewHelper extends AbstractViewHelper {
     /**
+     * @var bool
+     */
+    protected $escapeOutput = FALSE;
+    /**
      * @var array
      */
     protected $severities = [
