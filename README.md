@@ -1,17 +1,8 @@
 # Fluid Templating Engine - Dagou Edition
 EXT:dagou_fluid provides some useful ViewHelpers on website development.
 
-#### Content.TypoScriptViewHelper
-This ViewHelper helps you to render TypoScript.
-
-    <df:content.typoScript objectPath="" />
-    <df:content.typoScript>...</df:content.typoScript>
-
-- `objectPath` (string) TypoScript object path.
-- `cache` (boolean) Enable cache or not. Default `true`.
-
 #### Content.FlashMessageViewHelper
-This ViewHelper helps you to iterate the Flash Messages.
+This ViewHelper iterates the Flash Messages.
 
     <df:content.flashMessage as="...">...</df:content.flashMessage>
 
@@ -20,8 +11,28 @@ This ViewHelper helps you to iterate the Flash Messages.
 - `severity` (string) Optional severity, must be one of `\TYPO3\CMS\Core\Messaging\AbstractMessage` constants.
 - `flush` (boolean) Flush or not. Default `true`.
 
+#### Content.TypoScriptViewHelper
+This ViewHelper renders the TypoScript.
+
+    <df:content.typoScript objectPath="" />
+    <df:content.typoScript>...</df:content.typoScript>
+
+- `objectPath` (string) TypoScript object path.
+- `cache` (boolean) Enable cache or not. Default `true`.
+
+#### Format.NumberViewHelper
+This ViewHelper formats a number with grouped thousands. See [number_format()](http://php.net/manual/en/function.number-format.php) in php.net
+
+    <df:format.number number="..." />
+    <df:format.number>...</df:format.number>
+    
+- `number` (float) The number being formatted.
+- `decimals` (int) Sets the number of decimal points. Default `0`
+- `decPoint` (string) Sets the separator for the decimal point. Default `.`
+- `thousandsSep` (string) Sets the thousands separator. Default `,` 
+
 #### Html.ScriptViewHelper
-This ViewHelper helps you to load .JS library, file, or inline code in your Fluid template.
+This ViewHelper loads a .JS library, file, or inline code in a Fluid template.
 
 	<df:html.script src="..." />
 	<df:html.script>...</df:html.script>
@@ -32,7 +43,7 @@ This ViewHelper helps you to load .JS library, file, or inline code in your Flui
 - `footer` (boolean) Add to footer or not.
 
 #### Html.StyleViewHelper
-This ViewHelper helps you to load .CSS library, file, or inline code in your Fluid template.
+This ViewHelper loads a .CSS library, file, or inline code in a Fluid template.
 
 	<df:html.style src="..." />
 	<df:html.style>...</df:html.style>
@@ -41,8 +52,15 @@ This ViewHelper helps you to load .CSS library, file, or inline code in your Flu
 - `src` (string) Asset path.
 - `library` (boolean) Is library or not.
 
+#### Http.GetViewHelper
+This ViewHelper acquirea a GET variables.
+
+	<df:http.get variables="..." />
+
+- `variables` (string) The variables to get.
+
 #### Http.RedirectViewHelper
-This ViewHelper allow you to redirect page.
+This ViewHelper redirects to a new page.
 
 	<df:http.redirect url="..." />
 	<df:http.redirect>...</df:http.redirect>
@@ -51,7 +69,7 @@ This ViewHelper allow you to redirect page.
 - `httpStatus` (string) An optional HTTP status header.
 
 #### Link.QqViewHelper
-This ViewHelper helps you to create a URL for QQ message.
+This ViewHelper creates a URL for QQ chatting.
 
 	<df:link.qq qq="..." />
 	<df:link.qq>...</df:link.qq>
@@ -59,7 +77,7 @@ This ViewHelper helps you to create a URL for QQ message.
 - `qq` (string) QQ number.
 
 #### Link.TelViewHelper
-This ViewHelper helps you to create a URL for dialing.
+This ViewHelper creates a URL for dialing.
 
 	<df:link.tel tel="..." />
 	<df:link.tel>...</df:link.tel>

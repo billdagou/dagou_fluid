@@ -6,13 +6,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class GetViewHelper extends AbstractViewHelper {
     public function initializeArguments() {
-        $this->registerArgument('param', 'string', 'The parameter name in URL.');
+        $this->registerArgument('variables', 'string', 'The parameter name in URL.');
     }
 
     /**
      * @return mixed
      */
     public function render() {
-        return GeneralUtility::_GET($this->arguments['param']);
+        return GeneralUtility::_GET($this->arguments['variables']);
     }
 }
