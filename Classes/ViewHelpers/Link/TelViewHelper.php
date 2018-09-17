@@ -3,14 +3,14 @@ namespace Dagou\DagouFluid\ViewHelpers\Link;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
-class QqViewHelper extends AbstractTagBasedViewHelper {
+class TelViewHelper extends AbstractTagBasedViewHelper {
     /**
      * @var string
      */
     protected $tagName = 'a';
 
     public function initializeArguments() {
-        $this->registerArgument('qq', 'string', 'QQ number.');
+        $this->registerArgument('tel', 'string', 'Phone number.');
     }
 
     /**
@@ -19,9 +19,9 @@ class QqViewHelper extends AbstractTagBasedViewHelper {
     public function render() {
         $content = $this->renderChildren();
 
-        $qq = $this->arguments['qq'] ?: $content;
+        $tel = $this->arguments['tel'] ?: $content;
 
-        $this->tag->addAttribute('href', 'tencent://message/?uin='.preg_replace('/[^\d]+/', '', $qq));
+        $this->tag->addAttribute('href', 'tel:'.preg_replace('/[^\d]+/', '', $tel));
 
         $this->tag->setContent($content);
 

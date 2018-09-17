@@ -5,7 +5,7 @@ $EM_CONF[$_EXTKEY] = [
     'category' => 'misc',
     'constraints' => [
         'depends' => [
-            'extbase' => '8.7.0-8.7.99',
+            'fluid' => '8.7.0-8.7.99',
         ],
     ],
     'state' => 'stable',

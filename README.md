@@ -1,75 +1,85 @@
 # Fluid Templating Engine - Dagou Edition
 EXT:dagou_fluid provides some useful ViewHelpers on website development.
 
+#### Content.FlashMessageViewHelper
+This ViewHelper iterates the Flash Messages.
+
+    <df:content.flashMessage as="...">...</df:content.flashMessage>
+
+- `as` (string) Iteration variable name. **Required**.
+- `identifier` (string) Flash-message queue identifier.
+- `severity` (string) Optional severity, must be one of `\TYPO3\CMS\Core\Messaging\AbstractMessage` constants.
+- `flush` (boolean) Flush or not. Default `true`.
+
+#### Content.TypoScriptViewHelper
+This ViewHelper renders the TypoScript.
+
+    <df:content.typoScript objectPath="" />
+    <df:content.typoScript>...</df:content.typoScript>
+
+- `objectPath` (string) TypoScript object path.
+- `cache` (boolean) Enable cache or not. Default `true`.
+
+#### Format.NumberViewHelper
+This ViewHelper formats a number with grouped thousands. See [number_format()](http://php.net/manual/en/function.number-format.php) in php.net
+
+    <df:format.number number="..." />
+    <df:format.number>...</df:format.number>
+    
+- `number` (float) The number being formatted.
+- `decimals` (int) Sets the number of decimal points. Default `0`
+- `decPoint` (string) Sets the separator for the decimal point. Default `.`
+- `thousandsSep` (string) Sets the thousands separator. Default `,` 
+
 #### Html.ScriptViewHelper
-This ViewHelper helps you to load javascript library, file, or inline code in your Fluid template.
+This ViewHelper loads a .JS library, file, or inline code in a Fluid template.
 
 	<df:html.script src="..." />
 	<df:html.script>...</df:html.script>
 
-Allowed attributes:
-
-- `name` (string)
-Script name, in case you want to overwrite the script source in some other place. **Only works for library and inline code.**
-
-- `src` (string)
-Script source. Allowed prefix: `http://`, `https://`, `//`, `EXT:`.
-
-- `library` (boolean)
-Whether the script is library or not.
-
-- `footer` (boolean)
-Whether add the script at the end of the page or not. Default: `TRUE`.
+- `name` (string) Asset name.
+- `src` (string) Asset path.
+- `library` (boolean) Is library or not.
+- `footer` (boolean) Add to footer or not.
 
 #### Html.StyleViewHelper
-This ViewHelper helps you to load stylesheet library, file, or inline code in your Fluid template.
+This ViewHelper loads a .CSS library, file, or inline code in a Fluid template.
 
 	<df:html.style src="..." />
 	<df:html.style>...</df:html.style>
 
-Allowed attributes:
+- `name` (string) Asset name.
+- `src` (string) Asset path.
+- `library` (boolean) Is library or not.
 
-- `name` (string)
-Style name, in case you want to overwrite the style source in some other place. **Only works for inline code.**
+#### Http.GetViewHelper
+This ViewHelper acquirea a GET variables.
 
-- `src` (string)
-Style source. Allowed prefix: `http://`, `https://`, `//`, `EXT:`.
+	<df:http.get variables="..." />
 
-- `library` (boolean)
-Whether the Style is library or not.
+- `variables` (string) The variables to get.
 
 #### Http.RedirectViewHelper
-This ViewHelper allow you to redirect page.
+This ViewHelper redirects to a new page.
 
 	<df:http.redirect url="..." />
 	<df:http.redirect>...</df:http.redirect>
 
-Allowed attributes:
-
-- `url` (string)
-Redirection URL.
-
-- `httpStatus` (string)
-HTTP status header. Allowed value see `\TYPO3\CMS\Core\Utility\HttpUtility`;
-
-#### Link.TelViewHelper
-This ViewHelper helps you to create a URL for dialing.
-
-	<df:link.tel tel="..." />
-	<df:link.tel>...</df:link.tel>
-
-Allowed attributes:
-
-- `tel` (string)
-Phone number.
+- `url` (string) The target URL to redirect to.
+- `httpStatus` (string) An optional HTTP status header.
 
 #### Link.QqViewHelper
-This ViewHelper helps you to create a URL for QQ message.
+This ViewHelper creates a URL for QQ chatting.
 
 	<df:link.qq qq="..." />
 	<df:link.qq>...</df:link.qq>
 
-Allowed attributes:
+- `qq` (string) QQ number.
 
-- `qq` (string)
-QQ number.
+#### Link.TelViewHelper
+This ViewHelper creates a URL for dialing.
+
+	<df:link.tel tel="..." />
+	<df:link.tel>...</df:link.tel>
+
+- `tel` (string) Phone number.
