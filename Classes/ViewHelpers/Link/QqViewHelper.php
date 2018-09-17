@@ -17,11 +17,13 @@ class QqViewHelper extends AbstractTagBasedViewHelper {
      * @return string
      */
     public function render() {
-        $qq = $this->arguments['qq'] ?: $this->renderChildren();
+        $content = $this->renderChildren();
+
+        $qq = $this->arguments['qq'] ?: $content;
 
         $this->tag->addAttribute('href', 'tencent://message/?uin='.preg_replace('/[^\d]+/', '', $qq));
 
-        $this->tag->setContent($qq);
+        $this->tag->setContent($content);
 
         $this->tag->forceClosingTag(TRUE);
 

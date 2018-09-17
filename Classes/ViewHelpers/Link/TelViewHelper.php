@@ -17,11 +17,13 @@ class TelViewHelper extends AbstractTagBasedViewHelper {
      * @return string
      */
     public function render() {
-        $tel = $this->arguments['tel'] ?: $this->renderChildren();
+        $content = $this->renderChildren();
+
+        $tel = $this->arguments['tel'] ?: $content;
 
         $this->tag->addAttribute('href', 'tel:'.preg_replace('/[^\d]+/', '', $tel));
 
-        $this->tag->setContent($tel);
+        $this->tag->setContent($content);
 
         $this->tag->forceClosingTag(TRUE);
 
