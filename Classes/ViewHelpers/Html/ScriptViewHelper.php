@@ -14,6 +14,8 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
     }
 
     public function render() {
+        print_r($this->arguments);
+
         if ($this->arguments['footer']) {
             if ($this->arguments['src']) {
                 if ($this->arguments['library']) {
