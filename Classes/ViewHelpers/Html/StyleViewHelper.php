@@ -14,7 +14,7 @@ class StyleViewHelper extends AbstractAssetViewHelper {
                     $this->getAssetPath($this->arguments['src']),
                     'stylesheet',
                     'all',
-                    '',
+                    $this->getAssetName($this->arguments['name']),
                     $this->arguments['compress'],
                     $this->arguments['top']
                 );
@@ -23,7 +23,7 @@ class StyleViewHelper extends AbstractAssetViewHelper {
                     $this->getAssetPath($this->arguments['src']),
                     'stylesheet',
                     'all',
-                    '',
+                    $this->getAssetName($this->arguments['name']),
                     $this->arguments['compress'],
                     $this->arguments['top']
                 );
