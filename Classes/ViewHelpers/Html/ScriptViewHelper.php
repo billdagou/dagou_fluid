@@ -20,14 +20,14 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
                     $this->getPageRenderer()->addJsFooterLibrary(
                         $this->getAssetName($this->arguments['name']),
                         $this->getAssetPath($this->arguments['src']),
-                        NULL,
+                        'text/javascript',
                         $this->arguments['compress'],
                         $this->arguments['top']
                     );
                 } else {
                     $this->getPageRenderer()->addJsFooterFile(
                         $this->getAssetPath($this->arguments['src']),
-                        NULL,
+                        'text/javascript',
                         $this->arguments['compress'],
                         $this->arguments['top']
                     );
@@ -46,14 +46,14 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
                     $this->getPageRenderer()->addJsLibrary(
                         $this->getAssetName($this->arguments['name']),
                         $this->getAssetPath($this->arguments['src']),
-                        NULL,
+                        'text/javascript',
                         $this->arguments['compress'],
                         $this->arguments['top']
                     );
                 } else {
                     $this->getPageRenderer()->addJsFile(
                         $this->getAssetPath($this->arguments['src']),
-                        NULL,
+                        'text/javascript',
                         $this->arguments['compress'],
                         $this->arguments['top']
                     );
