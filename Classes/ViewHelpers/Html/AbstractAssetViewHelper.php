@@ -8,5 +8,7 @@ abstract class AbstractAssetViewHelper extends AbstractViewHelper {
         $this->registerArgument('name', 'string', 'Asset name.');
         $this->registerArgument('src', 'string', 'Asset path.');
         $this->registerArgument('library', 'boolean', 'Is library or not.');
+        $this->registerArgument('compress', 'boolean', 'Should compress or not.');
+        $this->registerArgument('top', 'boolean', 'Force on top or not.');
     }
 }

@@ -14,24 +14,30 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
     }
 
     public function render() {
-        print_r($this->arguments);
-
         if ($this->arguments['footer']) {
             if ($this->arguments['src']) {
                 if ($this->arguments['library']) {
                     $this->getPageRenderer()->addJsFooterLibrary(
                         $this->getAssetName($this->arguments['name']),
-                        $this->getAssetPath($this->arguments['src'])
+                        $this->getAssetPath($this->arguments['src']),
+                        NULL,
+                        $this->arguments['compress'],
+                        $this->arguments['top']
                     );
                 } else {
                     $this->getPageRenderer()->addJsFooterFile(
-                        $this->getAssetPath($this->arguments['src'])
+                        $this->getAssetPath($this->arguments['src']),
+                        NULL,
+                        $this->arguments['compress'],
+                        $this->arguments['top']
                     );
                 }
             } else {
                 $this->getPageRenderer()->addJsFooterInlineCode(
                     $this->getAssetName($this->arguments['name']),
-                    $this->renderChildren()
+                    $this->renderChildren(),
+                    $this->arguments['compress'],
+                    $this->arguments['top']
                 );
             }
         } else {
@@ -39,17 +45,25 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
                 if ($this->arguments['library']) {
                     $this->getPageRenderer()->addJsLibrary(
                         $this->getAssetName($this->arguments['name']),
-                        $this->getAssetPath($this->arguments['src'])
+                        $this->getAssetPath($this->arguments['src']),
+                        NULL,
+                        $this->arguments['compress'],
+                        $this->arguments['top']
                     );
                 } else {
                     $this->getPageRenderer()->addJsFile(
-                        $this->getAssetPath($this->arguments['src'])
+                        $this->getAssetPath($this->arguments['src']),
+                        NULL,
+                        $this->arguments['compress'],
+                        $this->arguments['top']
                     );
                 }
             } else {
                 $this->getPageRenderer()->addJsInlineCode(
                     $this->getAssetName($this->arguments['name']),
-                    $this->renderChildren()
+                    $this->renderChildren(),
+                    $this->arguments['compress'],
+                    $this->arguments['top']
                 );
             }
         }
