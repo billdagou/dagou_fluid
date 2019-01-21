@@ -40,7 +40,9 @@ This ViewHelper loads a .JS library, file, or inline code in a Fluid template.
 - `name` (string) Asset name.
 - `src` (string) Asset path.
 - `library` (boolean) Is library or not.
-- `footer` (boolean) Add to footer or not.
+- `footer` (boolean) Add to footer or not. Default `true`
+- `compress` (boolean) Should compress or not.
+- `top` (boolean) Force on top or not.
 
 #### Html.StyleViewHelper
 This ViewHelper loads a .CSS library, file, or inline code in a Fluid template.
@@ -51,6 +53,8 @@ This ViewHelper loads a .CSS library, file, or inline code in a Fluid template.
 - `name` (string) Asset name.
 - `src` (string) Asset path.
 - `library` (boolean) Is library or not.
+- `compress` (boolean) Is compressed or not.
+- `top` (boolean) Is forced on top or not.
 
 #### Http.GetViewHelper
 This ViewHelper acquirea a GET variables.
