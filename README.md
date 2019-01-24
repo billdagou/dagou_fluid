@@ -5,6 +5,7 @@ EXT:dagou_fluid provides some useful ViewHelpers on website development.
 This ViewHelper iterates the Flash Messages.
 
     <df:content.flashMessage as="...">...</df:content.flashMessage>
+<<<<<<< HEAD
 
 - `as` (string) Iteration variable name. **Required**.
 - `identifier` (string) Flash-message queue identifier.
@@ -20,16 +21,27 @@ This ViewHelper renders the TypoScript.
 - `objectPath` (string) TypoScript object path.
 - `cache` (boolean) Enable cache or not. Default `true`.
 
-#### Format.NumberViewHelper
-This ViewHelper formats a number with grouped thousands. See [number_format()](http://php.net/manual/en/function.number-format.php) in php.net
+#### Html.ScriptViewHelper
+This ViewHelper loads a .JS library, file, or inline code in a Fluid template.
 
-    <df:format.number number="..." />
-    <df:format.number>...</df:format.number>
-    
-- `number` (float) The number being formatted.
-- `decimals` (int) Sets the number of decimal points. Default `0`
-- `decPoint` (string) Sets the separator for the decimal point. Default `.`
-- `thousandsSep` (string) Sets the thousands separator. Default `,` 
+	<df:html.script src="..." />
+	<df:html.script>...</df:html.script>
+
+=======
+
+- `as` (string) Iteration variable name. **Required**.
+- `identifier` (string) Flash-message queue identifier.
+- `severity` (string) Optional severity, must be one of `\TYPO3\CMS\Core\Messaging\AbstractMessage` constants.
+- `flush` (boolean) Flush or not. Default `true`.
+
+#### Content.TypoScriptViewHelper
+This ViewHelper renders the TypoScript.
+
+    <df:content.typoScript objectPath="" />
+    <df:content.typoScript>...</df:content.typoScript>
+
+- `objectPath` (string) TypoScript object path.
+- `cache` (boolean) Enable cache or not. Default `true`.
 
 #### Html.ScriptViewHelper
 This ViewHelper loads a .JS library, file, or inline code in a Fluid template.
@@ -37,6 +49,7 @@ This ViewHelper loads a .JS library, file, or inline code in a Fluid template.
 	<df:html.script src="..." />
 	<df:html.script>...</df:html.script>
 
+>>>>>>> develop
 - `name` (string) Asset name.
 - `src` (string) Asset path.
 - `library` (boolean) Is library or not.
