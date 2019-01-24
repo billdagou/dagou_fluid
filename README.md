@@ -20,17 +20,6 @@ This ViewHelper renders the TypoScript.
 - `objectPath` (string) TypoScript object path.
 - `cache` (boolean) Enable cache or not. Default `true`.
 
-#### Format.NumberViewHelper
-This ViewHelper formats a number with grouped thousands. See [number_format()](http://php.net/manual/en/function.number-format.php) in php.net
-
-    <df:format.number number="..." />
-    <df:format.number>...</df:format.number>
-    
-- `number` (float) The number being formatted.
-- `decimals` (int) Sets the number of decimal points. Default `0`
-- `decPoint` (string) Sets the separator for the decimal point. Default `.`
-- `thousandsSep` (string) Sets the thousands separator. Default `,` 
-
 #### Html.ScriptViewHelper
 This ViewHelper loads a .JS library, file, or inline code in a Fluid template.
 
