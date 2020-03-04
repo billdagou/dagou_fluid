@@ -1,8 +1,9 @@
 <?php
-namespace Dagou\DagouFluid\ViewHelpers\Content;
+namespace Dagou\DagouFluid\ViewHelpers\Typo3;
 
 use TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\Inject;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Frontend\Configuration\TypoScript\ConditionMatching\ConditionMatcher;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -14,15 +15,9 @@ class TypoScriptViewHelper extends AbstractViewHelper {
     protected $escapeOutput = FALSE;
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     * @Inject
      */
     protected $configurationManager;
-
-    /**
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-     */
-    public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager) {
-        $this->configurationManager = $configurationManager;
-    }
 
     public function initializeArguments() {
         $this->registerArgument('objectPath', 'string', 'TypoScript object path.');
@@ -38,9 +33,7 @@ class TypoScriptViewHelper extends AbstractViewHelper {
 
             if (count($pathSegments)) {
                 $cObject = '';
-                $typoScript = $this->configurationManager->getConfiguration(
-                    ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
-                );
+                $typoScript = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
 
                 foreach ($pathSegments as $segment) {
                     if (!array_key_exists(($segment.'.'), $typoScript)) {

@@ -1,7 +1,8 @@
 <?php
 namespace Dagou\DagouFluid\Traits;
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 
 trait Asset {
     /**
@@ -9,18 +10,14 @@ trait Asset {
      *
      * @return string
      */
-    protected function getAssetName(string $name = NULL) {
+    protected function getAssetName(string $name = NULL): string {
         if ($name !== NULL) {
             return $name;
         } else {
             /** @var \TYPO3\CMS\Extbase\Mvc\Request $request */
             $request = $this->controllerContext->getRequest();
 
-            return $request->getControllerExtensionKey()
-                .'.'
-                .$request->getControllerName()
-                .'.'
-                .$request->getControllerActionName();
+            return $request->getControllerExtensionKey().'.'.$request->getControllerName().'.'.$request->getControllerActionName();
         }
     }
 
@@ -29,15 +26,13 @@ trait Asset {
      *
      * @return string
      */
-    protected function getAssetPath(string $path) {
+    protected function getAssetPath(string $path): string {
         if (preg_match('/^(https?:)?\/\//i', $path)) {
             return $path;
-        } elseif (strpos($path, 'EXT:') === 0) {
-            list($extKey, $path) = explode('/', substr($path, 4), 2);
-
-            return ExtensionManagementUtility::siteRelPath($extKey).$path;
         } else {
-            return $path;
+            return PathUtility::getAbsoluteWebPath(
+                GeneralUtility::getFileAbsFileName($path)
+            );
         }
     }
 }

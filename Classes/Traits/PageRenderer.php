@@ -7,7 +7,7 @@ trait PageRenderer {
     /**
      * @return \TYPO3\CMS\Core\Page\PageRenderer
      */
-    protected static function getPageRenderer() {
+    protected function getPageRenderer(): \TYPO3\CMS\Core\Page\PageRenderer {
         return GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
     }
 }

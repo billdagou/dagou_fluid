@@ -21,7 +21,7 @@ class TelViewHelper extends AbstractTagBasedViewHelper {
 
         $tel = $this->arguments['tel'] ?: $content;
 
-        $this->tag->addAttribute('href', 'tel:'.preg_replace('/[^\d]+/', '', $tel));
+        $this->tag->addAttribute('href', 'tel:'.$tel);
 
         $this->tag->setContent($content);
 

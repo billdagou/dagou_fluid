@@ -2,14 +2,14 @@
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Fluid Templating Engine - Dagou Edition',
     'description' => 'Fluid Templating Engine - Dagou Edition.',
-    'category' => 'misc',
-    'constraints' => [
-        'depends' => [
-            'fluid' => '8.7.0-8.7.99',
-        ],
-    ],
-    'state' => 'stable',
+    'category' => 'fe',
     'author' => 'Bill.Dagou',
     'author_email' => 'billdagou@gmail.com',
-    'version' => '8.7.0',
+    'version' => '9.5.0',
+    'state' => 'stable',
+    'constraints' => [
+        'depends' => [
+            'typo3' => '9.5.0-9.5.99',
+        ],
+    ],
 ];
