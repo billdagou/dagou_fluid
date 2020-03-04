@@ -10,7 +10,7 @@ class ScriptViewHelper extends AbstractAssetViewHelper {
     public function initializeArguments() {
         parent::initializeArguments();
 
-        $this->registerArgument('footer', 'boolean', 'Add to footer or not.', FALSE, TRUE);
+        $this->registerArgument('footer', 'boolean', 'Add to footer or not', FALSE, TRUE);
     }
 
     public function render() {

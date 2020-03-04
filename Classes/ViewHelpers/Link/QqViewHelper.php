@@ -21,7 +21,7 @@ class QqViewHelper extends AbstractTagBasedViewHelper {
 
         $qq = $this->arguments['qq'] ?: $content;
 
-        $this->tag->addAttribute('href', 'tencent://message/?uin='.preg_replace('/[^\d]+/', '', $qq));
+        $this->tag->addAttribute('href', 'tencent://message/?uin='.$qq);
 
         $this->tag->setContent($content);
 
