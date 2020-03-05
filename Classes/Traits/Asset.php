@@ -15,7 +15,7 @@ trait Asset {
             return $name;
         } else {
             /** @var \TYPO3\CMS\Extbase\Mvc\Request $request */
-            $request = $this->controllerContext->getRequest();
+            $request = $this->renderingContext->getControllerContext()->getRequest();
 
             return $request->getControllerExtensionKey().'.'.$request->getControllerName().'.'.$request->getControllerActionName();
         }

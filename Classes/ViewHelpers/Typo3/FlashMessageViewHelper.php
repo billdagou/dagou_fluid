@@ -36,7 +36,7 @@ class FlashMessageViewHelper extends AbstractViewHelper {
 
         $content = '';
 
-        if (count($flashMessages = $this->controllerContext->getFlashMessageQueue($this->arguments['identifier'])->$getAllMessagesFunc($severity))) {
+        if (count($flashMessages = $this->renderingContext->getControllerContext()->getFlashMessageQueue($this->arguments['identifier'])->$getAllMessagesFunc($severity))) {
             $variableProvider = $this->renderingContext->getVariableProvider();
 
             foreach ($flashMessages as $flashMessage) {
