@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class QqViewHelper extends AbstractViewHelper {
     public function initializeArguments() {
-        $this->registerArgument('qq', 'string', 'QQ number.', TRUE);
+        $this->registerArgument('qq', 'string', 'The QQ number to be turned into a URI', TRUE);
     }
 
     /**
