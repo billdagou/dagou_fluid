@@ -10,7 +10,10 @@ class JsonEncodeViewHelper extends AbstractViewHelper{
         $this->registerArgument('depth', 'int', 'The maximum depth', FALSE, 512);
     }
 
-    public function render() {
+    /**
+     * @return string
+     */
+    public function render(): string {
         return json_encode($this->arguments['value'], $this->arguments['options'], $this->arguments['depth']);
     }
 }

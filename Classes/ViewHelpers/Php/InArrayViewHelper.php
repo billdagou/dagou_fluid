@@ -13,7 +13,7 @@ class InArrayViewHelper extends AbstractViewHelper {
     /**
      * @return bool
      */
-    public function render() {
+    public function render(): bool {
         $value = $this->renderChildren();
 
         if ($value instanceof DomainObjectInterface) {
