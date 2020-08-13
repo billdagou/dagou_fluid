@@ -55,6 +55,6 @@ class UploadViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\UploadViewHelpe
             return $value;
         }
 
-        return $this->propertyMapper->convert($value, FileReference::class);
+        return $this->propertyMapper->convert((string)$value, FileReference::class);
     }
 }
