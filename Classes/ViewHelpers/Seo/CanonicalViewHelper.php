@@ -2,6 +2,7 @@
 namespace Dagou\DagouFluid\ViewHelpers\Seo;
 
 use TYPO3\CMS\Seo\Canonical\CanonicalGenerator;
+use TYPO3\CMS\Seo\Event\ModifyUrlForCanonicalTagEvent;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class CanonicalViewHelper extends AbstractViewHelper {
@@ -22,9 +23,8 @@ class CanonicalViewHelper extends AbstractViewHelper {
              * @return string
              */
             public function generate(): string {
-                $href = '';
-
-                $this->signalSlotDispatcher->dispatch(CanonicalGenerator::class, 'beforeGeneratingCanonical', [&$href]);
+                $event = $this->eventDispatcher->dispatch(new ModifyUrlForCanonicalTagEvent(''));
+                $href = $event->getUrl();
 
                 if (empty($href) && (int)$this->typoScriptFrontendController->page['no_index'] === 1) {
                     return '';

@@ -1,7 +1,7 @@
 <?php
 namespace Dagou\DagouFluid\ViewHelpers\Typo3;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class ApplicationContextViewHelper extends AbstractViewHelper {
@@ -13,7 +13,7 @@ class ApplicationContextViewHelper extends AbstractViewHelper {
      * @return mixed
      */
     public function render() {
-        $applicationContext = GeneralUtility::getApplicationContext();
+        $applicationContext = Environment::getContext();
 
         if (in_array($this->arguments['is'], ['Production', 'Development', 'Testing'])) {
             return $applicationContext->{'is'.$this->arguments['is']}();

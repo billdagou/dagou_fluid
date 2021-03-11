@@ -11,7 +11,7 @@ class QqViewHelper extends AbstractViewHelper {
     /**
      * @return string
      */
-    public function render() {
+    public function render(): string {
         return 'tencent://message/?uin='.$this->arguments['qq'];
     }
 }

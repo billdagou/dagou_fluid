@@ -12,7 +12,6 @@ class QqViewHelper extends AbstractTagBasedViewHelper {
     public function initializeArguments() {
         parent::initializeArguments();
         $this->registerArgument('qq', 'string', 'The QQ number to be turned into a link');
-        $this->registerArgument('escape', 'bool', 'Escape special characters', FALSE, TRUE);
         $this->registerUniversalTagAttributes();
         $this->registerTagAttribute('name', 'string', 'Specifies the name of an anchor');
         $this->registerTagAttribute('rel', 'string', 'Specifies the relationship between the current document and the linked document');
@@ -23,11 +22,9 @@ class QqViewHelper extends AbstractTagBasedViewHelper {
     /**
      * @return string
      */
-    public function render() {
-        $qq = $this->arguments['qq'];
-
-        $linkHref = 'tencent://message/?uin='.$qq;
-        $linkText = $qq;
+    public function render(): string {
+        $linkHref = 'tencent://message/?uin='.$this->arguments['qq'];
+        $linkText = $this->arguments['qq'];
 
         $tagContent = $this->renderChildren();
         if ($tagContent !== NULL) {
@@ -35,7 +32,7 @@ class QqViewHelper extends AbstractTagBasedViewHelper {
         }
 
         $this->tag->setContent($linkText);
-        $this->tag->addAttribute('href', $linkHref, $this->arguments['escape']);
+        $this->tag->addAttribute('href', $linkHref, TRUE);
         $this->tag->forceClosingTag(TRUE);
 
         return $this->tag->render();
