@@ -16,7 +16,7 @@ class DownloadViewHelper extends AbstractViewHelper {
         $content = $this->renderChildren();
 
         $header = [
-            'Content-Disposition' => 'attachment; filename='.$this->getFilename(),
+            'Content-Disposition' => 'attachment; filename='.$this->viewHelperVariableContainer->get(__CLASS__, 'filename'),
             'Content-Length' => strlen($content),
             'Content-Transfer-encoding' => 'binary',
             'Content-Type' => 'application/octet-stream',
@@ -32,17 +32,6 @@ class DownloadViewHelper extends AbstractViewHelper {
         echo $content;
 
         exit();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getFilename(): string {
-        return str_replace(
-            ' ',
-            '_',
-            $this->viewHelperVariableContainer->get(__CLASS__, 'filename')
-        );
     }
 
     /**
