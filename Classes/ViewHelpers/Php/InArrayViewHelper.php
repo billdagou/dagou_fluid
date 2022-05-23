@@ -1,32 +1,28 @@
 <?php
 namespace Dagou\DagouFluid\ViewHelpers\Php;
 
-use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class InArrayViewHelper extends AbstractViewHelper {
     public function initializeArguments() {
-        $this->registerArgument('array', \Iterator::class, 'Array list.', TRUE);
-        $this->registerArgument('strict', 'bool', 'Strict mode', FALSE, FALSE);
+        $this->registerArgument('needle', 'mixed', 'The searched value');
+        $this->registerArgument('haystack', \Iterator::class, 'The array', TRUE);
+        $this->registerArgument('strict', 'boolean', 'Strict mode', FALSE, FALSE);
     }
 
     /**
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param \TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
+     *
      * @return bool
      */
-    public function render(): bool {
-        $value = $this->renderChildren();
-
-        if ($value instanceof DomainObjectInterface) {
-            /** @var DomainObjectInterface $domainObject */
-            foreach ($this->arguments['array'] as $domainObject) {
-                if ($value->getUid() === $domainObject->getUid()) {
-                    return TRUE;
-                }
-            }
-
-            return FALSE;
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext): bool {
+        if ($arguments['haystack'] instanceof \ArrayAccess) {
+            return $arguments['haystack']->offsetExists($arguments['needle'] ?? $renderChildrenClosure());
         } else {
-            return in_array($value, $this->arguments['array'], $this->arguments['strict']);
+            return in_array($arguments['needle'] ?? $renderChildrenClosure(), $arguments['haystack'], $arguments['strict']);
         }
     }
 }

@@ -4,11 +4,12 @@ namespace Dagou\DagouFluid\ViewHelpers\Php;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-class StrReplaceViewHelper extends AbstractViewHelper {
+class JsonDecodeViewHelper extends AbstractViewHelper {
     public function initializeArguments() {
-        $this->registerArgument('search', 'mixed', 'The value being searched for', TRUE);
-        $this->registerArgument('replace', 'mixed', 'The replacement value that replaces found search values', TRUE);
-        $this->registerArgument('subject', 'mixed', 'The string or array being searched and replaced on');
+        $this->registerArgument('json', 'string', 'The json string being decoded');
+        $this->registerArgument('assoc', 'boolean', 'Assoc', FALSE, FALSE);
+        $this->registerArgument('depth', 'int', 'User specified recursion depth', FALSE, 512);
+        $this->registerArgument('options', 'int', 'Bitmask', FALSE, 0);
     }
 
     /**
@@ -19,6 +20,6 @@ class StrReplaceViewHelper extends AbstractViewHelper {
      * @return mixed
      */
     public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
-        return str_replace($arguments['search'], $arguments['replace'], $arguments['subject'] ?? $renderChildrenClosure());
+        return json_decode($arguments['json'] ?? $renderChildrenClosure(), $arguments['assoc'], $arguments['depth'], $arguments['options']);
     }
 }

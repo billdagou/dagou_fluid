@@ -1,6 +1,7 @@
 <?php
 namespace Dagou\DagouFluid\ViewHelpers\Php;
 
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class RandViewHelper extends AbstractViewHelper {
@@ -10,9 +11,13 @@ class RandViewHelper extends AbstractViewHelper {
     }
 
     /**
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param \TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
+     *
      * @return int
      */
-    public function render(): int {
-        return rand($this->arguments['min'], $this->arguments['max']);
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext): int {
+        return rand($arguments['min'], $arguments['max'] ?? $renderChildrenClosure());
     }
 }
