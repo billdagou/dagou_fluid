@@ -23,6 +23,10 @@ class CanonicalViewHelper extends AbstractViewHelper {
              * @return string
              */
             public function generate(): string {
+                if ($this->typoScriptFrontendController->config['config']['disableCanonical'] ?? FALSE) {
+                    return '';
+                }
+
                 $event = $this->eventDispatcher->dispatch(new ModifyUrlForCanonicalTagEvent(''));
                 $href = $event->getUrl();
 
@@ -31,10 +35,10 @@ class CanonicalViewHelper extends AbstractViewHelper {
                 }
 
                 if (empty($href)) {
-                    $href = $this->checkContentFromPid();
+                    $href = $this->checkForCanonicalLink();
                 }
                 if (empty($href)) {
-                    $href = $this->checkForCanonicalLink();
+                    $href = $this->checkContentFromPid();
                 }
                 if (empty($href)) {
                     $href = $this->checkDefaultCanonical();

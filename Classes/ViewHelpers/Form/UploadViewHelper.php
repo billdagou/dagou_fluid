@@ -6,14 +6,8 @@ use TYPO3\CMS\Extbase\Property\PropertyMapper;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 
 class UploadViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\UploadViewHelper {
-    /**
-     * @var \TYPO3\CMS\Extbase\Security\Cryptography\HashService
-     */
-    protected $hashService;
-    /**
-     * @var \TYPO3\CMS\Extbase\Property\PropertyMapper
-     */
-    protected $propertyMapper;
+    protected HashService $hashService;
+    protected PropertyMapper $propertyMapper;
 
     /**
      * @param \TYPO3\CMS\Extbase\Security\Cryptography\HashService $hashService
@@ -31,6 +25,7 @@ class UploadViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\UploadViewHelpe
 
     /**
      * @return string
+     * @throws \TYPO3\CMS\Extbase\Property\Exception
      */
     public function render(): string {
         $content = '';
@@ -55,7 +50,8 @@ class UploadViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\UploadViewHelpe
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|NULL
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+     * @throws \TYPO3\CMS\Extbase\Property\Exception
      */
     protected function getFileReference(): ?FileReference {
         if ($this->getMappingResultsForProperty()->hasErrors()) {

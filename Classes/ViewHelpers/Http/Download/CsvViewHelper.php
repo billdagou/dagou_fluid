@@ -2,7 +2,6 @@
 namespace Dagou\DagouFluid\ViewHelpers\Http\Download;
 
 use Dagou\DagouFluid\ViewHelpers\Http\DownloadViewHelper;
-use TYPO3\CMS\Core\Charset\CharsetConverter;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class CsvViewHelper extends AbstractViewHelper {
