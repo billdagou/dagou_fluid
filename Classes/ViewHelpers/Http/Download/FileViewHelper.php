@@ -2,6 +2,7 @@
 namespace Dagou\DagouFluid\ViewHelpers\Http\Download;
 
 use Dagou\DagouFluid\ViewHelpers\Http\DownloadViewHelper;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -24,6 +25,6 @@ class FileViewHelper extends AbstractViewHelper {
                 .'.'.$file->getExtension()
         );
 
-        return file_get_contents($file->getPublicUrl());
+        return file_get_contents(Environment::getPublicPath().$file->getPublicUrl());
     }
 }
