@@ -12,19 +12,22 @@ class DownloadViewHelper extends AbstractViewHelper {
         ob_clean();
 
         $this->viewHelperVariableContainer->add(__CLASS__, 'filename', $this->arguments['filename']);
+        $this->viewHelperVariableContainer->add(__CLASS__, 'mimeType', 'application/octet-stream');
 
         $content = $this->renderChildren();
 
         $header = [
+            'Content-Description' => 'File Transfer',
             'Content-Disposition' => 'attachment; filename='.$this->viewHelperVariableContainer->get(__CLASS__, 'filename'),
             'Content-Length' => strlen($content),
             'Content-Transfer-encoding' => 'binary',
-            'Content-Type' => 'application/octet-stream',
+            'Content-Type' => $this->viewHelperVariableContainer->get(__CLASS__, 'mimeType'),
             'Expires' => '0',
-            'Cache-Control' => 'must-revalidate post-check=0, pre-check=0',
+            'Cache-Control' => 'must-revalidate',
             'Pragma' => 'public',
         ];
 
+        $this->viewHelperVariableContainer->remove(__CLASS__, 'mimeType');
         $this->viewHelperVariableContainer->remove(__CLASS__, 'filename');
 
         $this->renderHeader($header);

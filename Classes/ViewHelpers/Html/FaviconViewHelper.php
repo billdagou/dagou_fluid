@@ -13,11 +13,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 class FaviconViewHelper extends AbstractViewHelper {
     use PageRenderer;
 
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('src', 'string', 'Favicon path.', TRUE);
     }
 
-    public function render() {
+    public function render(): void {
         try {
             $favIcon = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->arguments['src']);
             $iconFileInfo = GeneralUtility::makeInstance(ImageInfo::class, Environment::getPublicPath().'/'.$favIcon);

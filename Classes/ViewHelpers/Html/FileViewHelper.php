@@ -5,11 +5,11 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class FileViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('file', FileReference::class, 'File reference.', TRUE);
     }
 
-    public function render() {
+    public function render(): void {
         /** @var \TYPO3\CMS\Core\Resource\File $file */
         $file = $this->arguments['file']->getOriginalResource()->getOriginalFile();
 

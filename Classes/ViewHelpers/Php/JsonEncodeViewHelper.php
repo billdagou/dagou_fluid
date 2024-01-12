@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class JsonEncodeViewHelper extends AbstractViewHelper{
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('value', 'mixed', 'The value being encoded');
         $this->registerArgument('options', 'int', 'Bitmask', FALSE, 0);
         $this->registerArgument('depth', 'int', 'The maximum depth', FALSE, 512);

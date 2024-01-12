@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class UcfirstViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('str', 'string', 'The input string');
     }
 

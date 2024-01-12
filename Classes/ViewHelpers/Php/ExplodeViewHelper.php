@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class ExplodeViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('delimiter', 'string', 'The boundary string', TRUE);
         $this->registerArgument('string', 'string', 'The input string');
         $this->registerArgument('limit', 'int', 'Limit', FALSE, PHP_INT_MAX);

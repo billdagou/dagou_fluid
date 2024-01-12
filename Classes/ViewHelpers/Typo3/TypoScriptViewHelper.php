@@ -12,7 +12,7 @@ class TypoScriptViewHelper extends AbstractViewHelper {
      */
     protected $escapeOutput = FALSE;
 
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('cache', 'boolean', 'Enable cache or not.', FALSE, TRUE);
     }
 

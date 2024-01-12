@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class RandViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('min', 'int', 'The lowest value to return', FALSE, 0);
         $this->registerArgument('max', 'int', 'The highest value to return', FALSE, getrandmax());
     }

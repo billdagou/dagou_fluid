@@ -8,7 +8,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 class BaseUrlViewHelper extends AbstractViewHelper {
     use PageRenderer;
 
-    public function render() {
+    public function render(): void {
         $this->getPageRenderer()->setBaseUrl(
             GeneralUtility::getIndpEnv('TYPO3_SITE_URL')
         );

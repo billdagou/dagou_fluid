@@ -6,7 +6,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class ExtensionViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('extKey', 'string', 'Extension key.', TRUE);
         $this->registerArgument('path', 'string', 'Configuration path.', FALSE, '');
     }
@@ -14,7 +14,7 @@ class ExtensionViewHelper extends AbstractViewHelper {
     /**
      * @return mixed
      */
-    public function render() {
+    public function render(): mixed {
         return GeneralUtility::makeInstance(ExtensionConfiguration::class)
             ->get($this->arguments['extKey'], $this->arguments['path']);
     }

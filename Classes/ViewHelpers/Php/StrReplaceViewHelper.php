@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class StrReplaceViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('search', 'mixed', 'The value being searched for', TRUE);
         $this->registerArgument('replace', 'mixed', 'The replacement value that replaces found search values', TRUE);
         $this->registerArgument('subject', 'mixed', 'The string or array being searched and replaced on');

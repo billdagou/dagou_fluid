@@ -7,7 +7,7 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class FileViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('file', FileReference::class, 'File reference');
     }
 
@@ -24,6 +24,7 @@ class FileViewHelper extends AbstractViewHelper {
             ($this->viewHelperVariableContainer->get(DownloadViewHelper::class, 'filename') ?: $file->getNameWithoutExtension())
                 .'.'.$file->getExtension()
         );
+        $this->viewHelperVariableContainer->add(DownloadViewHelper::class, 'mimeType', $file->getMimeType());
 
         return file_get_contents(Environment::getPublicPath().$file->getPublicUrl());
     }

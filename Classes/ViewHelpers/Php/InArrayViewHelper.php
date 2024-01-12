@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class InArrayViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('needle', 'mixed', 'The searched value');
         $this->registerArgument('haystack', \Iterator::class, 'The array', TRUE);
         $this->registerArgument('strict', 'boolean', 'Strict mode', FALSE, FALSE);

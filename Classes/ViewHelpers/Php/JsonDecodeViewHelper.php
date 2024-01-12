@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class JsonDecodeViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('json', 'string', 'The json string being decoded');
         $this->registerArgument('assoc', 'boolean', 'Assoc', FALSE, FALSE);
         $this->registerArgument('depth', 'int', 'User specified recursion depth', FALSE, 512);
@@ -19,7 +19,7 @@ class JsonDecodeViewHelper extends AbstractViewHelper {
      *
      * @return mixed
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext): mixed {
         return json_decode($arguments['json'] ?? $renderChildrenClosure(), $arguments['assoc'], $arguments['depth'], $arguments['options']);
     }
 }

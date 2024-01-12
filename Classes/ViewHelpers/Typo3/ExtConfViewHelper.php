@@ -4,7 +4,7 @@ namespace Dagou\DagouFluid\ViewHelpers\Typo3;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class ExtConfViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('extKey', 'string', 'Extension key.', TRUE);
         $this->registerArgument('path', 'string', 'Configuration path.', FALSE, '');
     }
@@ -12,7 +12,7 @@ class ExtConfViewHelper extends AbstractViewHelper {
     /**
      * @return mixed
      */
-    public function render() {
+    public function render(): mixed {
         $extConf = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->arguments['extKey']];
 
         if ($this->arguments['path']) {

@@ -5,10 +5,13 @@ use Dagou\DagouFluid\ViewHelpers\Http\DownloadViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class CsvViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('data', 'array', 'CSV data');
     }
 
+    /**
+     * @return string
+     */
     public function render(): string {
         $this->viewHelperVariableContainer->add(
             DownloadViewHelper::class,
@@ -16,6 +19,7 @@ class CsvViewHelper extends AbstractViewHelper {
             ($this->viewHelperVariableContainer->get(DownloadViewHelper::class, 'filename') ?: 'Data')
                 .'.csv'
         );
+        $this->viewHelperVariableContainer->add(DownloadViewHelper::class, 'mimeType', 'text/csv');
 
         return implode(
             LF,

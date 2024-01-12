@@ -1,8 +1,8 @@
 <?php
 namespace Dagou\DagouFluid\ViewHelpers\Typo3;
 
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -11,28 +11,28 @@ class FlashMessagesViewHelper extends AbstractViewHelper {
     protected FlashMessageService $flashMessageService;
 
     protected array $severities = [
-        'notice' => AbstractMessage::NOTICE,
-        'info' => AbstractMessage::INFO,
-        'ok' => AbstractMessage::OK,
-        'warning' => AbstractMessage::WARNING,
-        'error' => AbstractMessage::ERROR,
+        'notice' => ContextualFeedbackSeverity::NOTICE,
+        'info' => ContextualFeedbackSeverity::INFO,
+        'ok' => ContextualFeedbackSeverity::OK,
+        'warning' => ContextualFeedbackSeverity::WARNING,
+        'error' => ContextualFeedbackSeverity::ERROR,
     ];
 
     /**
      * @param \TYPO3\CMS\Extbase\Service\ExtensionService $extensionService
      */
-    public function injectExtensionService(ExtensionService $extensionService) {
+    public function injectExtensionService(ExtensionService $extensionService): void {
         $this->extensionService = $extensionService;
     }
 
     /**
      * @param \TYPO3\CMS\Core\Messaging\FlashMessageService $flashMessageService
      */
-    public function injectFlashMessageService(FlashMessageService $flashMessageService) {
+    public function injectFlashMessageService(FlashMessageService $flashMessageService): void {
         $this->flashMessageService = $flashMessageService;
     }
 
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('identifier', 'string', 'Flash-message queue identifier');
         $this->registerArgument('severity', 'string', 'Optional severity, must be either of one of \TYPO3\CMS\Core\Messaging\FlashMessage constants');
         $this->registerArgument('flush', 'boolean', 'Flush the message queue or not', FALSE, TRUE);

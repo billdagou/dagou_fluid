@@ -5,7 +5,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class UcwordsViewHelper extends AbstractViewHelper {
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('str', 'string', 'The input string');
         $this->registerArgument('delimiters', 'string', 'The optional delimiters contains the word separator characters', FALSE, "\t\r\n\f\v");
     }
