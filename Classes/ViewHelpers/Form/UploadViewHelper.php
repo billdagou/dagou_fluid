@@ -35,6 +35,7 @@ class UploadViewHelper extends AbstractFormFieldViewHelper {
         $this->registerTagAttribute('multiple', 'string', 'Specifies that the file input element should allow multiple selection of files');
         $this->registerTagAttribute('accept', 'string', 'Specifies the allowed file extensions to upload via comma-separated list, example ".png,.gif"');
         $this->registerArgument('errorClass', 'string', 'CSS class to set if there are errors for this ViewHelper', FALSE, 'f3-form-error');
+        $this->registerArgument('fieldFirst', 'boolean', 'Insert the field above the rendered content', FALSE, TRUE);
 
         $this->registerUniversalTagAttributes();
     }
@@ -44,24 +45,6 @@ class UploadViewHelper extends AbstractFormFieldViewHelper {
      * @throws \TYPO3\CMS\Extbase\Property\Exception
      */
     public function render(): string {
-        $content = '';
-
-        if (($fileReference = $this->getFileReference()) !== NULL) {
-            $name = $this->getName();
-
-            if ($fileReference->getUid() === NULL) {
-                $content .= '<input type="hidden" name="'.$name.'[__resource]" value="'.htmlspecialchars($this->hashService->appendHmac((string)$fileReference->getOriginalResource()->getOriginalFile()->getUid())).'" />';
-            } else {
-                $content .= '<input type="hidden" name="'.$name.'[__identity]" value="'.htmlspecialchars($this->hashService->appendHmac((string)$fileReference->getUid())).'" />';
-            }
-
-            $this->templateVariableContainer->add('resource', $fileReference);
-
-            $content .= $this->renderChildren();
-
-            $this->templateVariableContainer->remove('resource');
-        }
-
         $name = $this->getName();
         $allowedFields = ['name', 'type', 'tmp_name', 'error', 'size'];
         foreach ($allowedFields as $fieldName) {
@@ -75,9 +58,38 @@ class UploadViewHelper extends AbstractFormFieldViewHelper {
             $this->tag->addAttribute('name', $name);
         }
 
+        $fileReference = $this->getFileReference();
+
         $this->setErrorClassAttribute();
 
-        return $content.$this->tag->render();
+        $this->templateVariableContainer->add('resource', $fileReference);
+
+        $content = $this->renderChildren();
+
+        $this->templateVariableContainer->remove('resource');
+
+        return $this->arguments['fieldFirst'] ?
+            $this->renderHiddenFieldForFileReference($fileReference).$this->tag->render().$content :
+            $content.$this->renderHiddenFieldForFileReference($fileReference).$this->tag->render();
+    }
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference|null $fileReference
+     *
+     * @return string
+     */
+    protected function renderHiddenFieldForFileReference(?FileReference $fileReference = NULL): string {
+        if ($fileReference !== NULL) {
+            $name = $this->getName();
+
+            if ($fileReference->getUid() === NULL) {
+                return '<input type="hidden" name="'.$name.'[__resource]" value="'.htmlspecialchars($this->hashService->appendHmac((string)$fileReference->getOriginalResource()->getOriginalFile()->getUid())).'" />';
+            } else {
+                return '<input type="hidden" name="'.$name.'[__identity]" value="'.htmlspecialchars($this->hashService->appendHmac((string)$fileReference->getUid())).'" />';
+            }
+        }
+
+        return '';
     }
 
     /**
